@@ -17,11 +17,13 @@ echo.
 call conda env create -f python_environment.yml
 
 REM If environment already exists, conda returns an error.
-REM We continue because the environment may already be available.
+REM We continue if dbt_env already exists.
+
 if errorlevel 1 (
 echo.
 echo Environment may already exist or creation failed.
 echo Checking whether dbt_env exists...
+echo.
 
 ```
 call conda env list | findstr /R /C:"dbt_env" >nul
@@ -30,6 +32,7 @@ if errorlevel 1 (
     echo.
     echo ERROR: dbt_env does not exist.
     echo Please check python_environment.yml and your Conda installation.
+    echo.
     pause
     exit /b 1
 )
@@ -71,13 +74,13 @@ REM --------------------------------------------------
 REM Create .dbt directory if it does not exist
 REM --------------------------------------------------
 
-if not exist "%USERPROFILE%.dbt" (
-mkdir "%USERPROFILE%.dbt"
+if not exist "%USERPROFILE%\.dbt" (
+mkdir "%USERPROFILE%\.dbt"
 echo Created directory:
-echo %USERPROFILE%.dbt
+echo %USERPROFILE%\.dbt
 )
 
-set "PROFILE_FILE=%USERPROFILE%.dbt\profiles.yml"
+set "PROFILE_FILE=%USERPROFILE%\.dbt\profiles.yml"
 
 REM --------------------------------------------------
 REM Create profiles.yml if it does not exist
@@ -102,6 +105,7 @@ echo No changes were made to avoid creating a duplicate.
 ) else (
 echo.
 echo Adding Banking_Project to profiles.yml...
+echo.
 
 ```
 >>"%PROFILE_FILE%" echo.
@@ -117,6 +121,7 @@ echo Adding Banking_Project to profiles.yml...
 >>"%PROFILE_FILE%" echo       type: snowflake
 >>"%PROFILE_FILE%" echo       user: dbt_user
 >>"%PROFILE_FILE%" echo       warehouse: bank_wh
+>>"%PROFILE_FILE%" echo   target: dev
 
 echo Banking_Project added successfully.
 ```
