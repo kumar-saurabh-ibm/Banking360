@@ -1,0 +1,26 @@
+version: 2
+
+sources:
+  - name: src
+    description: "Bank360 raw banking data"
+    database: BANK360_PROJECT
+    schema: RAW
+
+    tables:
+      - name: customers
+        description: "Customer master information"
+
+      - name: customer_addresses
+        description: "Customer address information"
+
+      - name: accounts
+        description: "Customer bank account information"
+
+      - name: account_transactions
+        description: "Bank account transaction information"
+
+      - name: credit_card_transactions
+        description: "Credit card transaction information"
+
+      - name: sanctions_list
+        description: "Sanctions and watchlist information"
