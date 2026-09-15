@@ -1,26 +1,24 @@
-version: 2
-
 sources:
   - name: src
-    description: "Bank360 raw banking data"
+    description: "Bank360 raw landing area data"
     database: BANK360_PROJECT
-    schema: RAW
+    schema: RAW          
 
     tables:
       - name: customers
-        description: "Customer master information"
-
-      - name: customer_addresses
-        description: "Customer address information"
+        description: "Customer master records including demographic information and KYC status."
 
       - name: accounts
-        description: "Customer bank account information"
+        description: "Bank account status details including type, balance, and opening dates."
 
-      - name: account_transactions
-        description: "Bank account transaction information"
+      - name: transactions
+        description: "Financial ledger transactions linked to customer bank accounts."
 
-      - name: credit_card_transactions
-        description: "Credit card transaction information"
+      - name: cards
+        description: "Credit and debit card status tracking, numbers, and expiration windows."
 
-      - name: sanctions_list
-        description: "Sanctions and watchlist information"
+      - name: branches
+        description: "Physical operational bank branches, regional zones, and management mapping."
+
+      - name: loans
+        description: "Customer loan profiles detailing credit type, principal balances, and interest rates."
